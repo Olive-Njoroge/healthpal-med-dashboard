@@ -9,7 +9,174 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      appointments: {
+        Row: {
+          created_at: string | null
+          date: string
+          id: number
+          notes: string | null
+          patient_id: number
+          reason: string | null
+          time: string
+        }
+        Insert: {
+          created_at?: string | null
+          date: string
+          id?: number
+          notes?: string | null
+          patient_id: number
+          reason?: string | null
+          time: string
+        }
+        Update: {
+          created_at?: string | null
+          date?: string
+          id?: number
+          notes?: string | null
+          patient_id?: number
+          reason?: string | null
+          time?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "appointments_patient_id_fkey"
+            columns: ["patient_id"]
+            isOneToOne: false
+            referencedRelation: "patients"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      doctors: {
+        Row: {
+          created_at: string | null
+          email: string
+          id: string
+          name: string
+          password: string
+        }
+        Insert: {
+          created_at?: string | null
+          email: string
+          id?: string
+          name: string
+          password: string
+        }
+        Update: {
+          created_at?: string | null
+          email?: string
+          id?: string
+          name?: string
+          password?: string
+        }
+        Relationships: []
+      }
+      medications: {
+        Row: {
+          created_at: string | null
+          dosage: string
+          id: number
+          instructions: string | null
+          name: string
+          patient_id: number
+          schedule_time: string
+        }
+        Insert: {
+          created_at?: string | null
+          dosage: string
+          id?: number
+          instructions?: string | null
+          name: string
+          patient_id: number
+          schedule_time: string
+        }
+        Update: {
+          created_at?: string | null
+          dosage?: string
+          id?: number
+          instructions?: string | null
+          name?: string
+          patient_id?: number
+          schedule_time?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "medications_patient_id_fkey"
+            columns: ["patient_id"]
+            isOneToOne: false
+            referencedRelation: "patients"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      patients: {
+        Row: {
+          age: number
+          contact: string | null
+          created_at: string | null
+          doctor_id: string | null
+          gender: string
+          id: number
+          name: string
+        }
+        Insert: {
+          age: number
+          contact?: string | null
+          created_at?: string | null
+          doctor_id?: string | null
+          gender: string
+          id?: number
+          name: string
+        }
+        Update: {
+          age?: number
+          contact?: string | null
+          created_at?: string | null
+          doctor_id?: string | null
+          gender?: string
+          id?: number
+          name?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "patients_doctor_id_fkey"
+            columns: ["doctor_id"]
+            isOneToOne: false
+            referencedRelation: "doctors"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          created_at: string | null
+          email: string
+          full_name: string
+          id: string
+          license_number: string | null
+          specialization: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          email: string
+          full_name: string
+          id: string
+          license_number?: string | null
+          specialization?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          email?: string
+          full_name?: string
+          id?: string
+          license_number?: string | null
+          specialization?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

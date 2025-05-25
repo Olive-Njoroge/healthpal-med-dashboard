@@ -1,18 +1,20 @@
 
 import { useState } from 'react';
+import { useAuth } from '@/contexts/AuthContext';
 import Sidebar from './Sidebar';
 import DashboardOverview from './DashboardOverview';
 import PatientsView from './PatientsView';
 import AppointmentsView from './AppointmentsView';
 import MedicationsView from './MedicationsView';
 
-interface DashboardProps {
-  onLogout: () => void;
-}
-
-const Dashboard = ({ onLogout }: DashboardProps) => {
+const Dashboard = () => {
   const [activeView, setActiveView] = useState('dashboard');
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const { signOut } = useAuth();
+
+  const handleLogout = async () => {
+    await signOut();
+  };
 
   const renderContent = () => {
     switch (activeView) {
@@ -34,7 +36,7 @@ const Dashboard = ({ onLogout }: DashboardProps) => {
       <Sidebar
         activeView={activeView}
         onViewChange={setActiveView}
-        onLogout={onLogout}
+        onLogout={handleLogout}
         collapsed={sidebarCollapsed}
         onToggleCollapse={() => setSidebarCollapsed(!sidebarCollapsed)}
       />
