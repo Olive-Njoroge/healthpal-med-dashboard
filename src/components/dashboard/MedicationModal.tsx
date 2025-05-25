@@ -1,12 +1,12 @@
+
 import React, { useState } from 'react';
 import {
-  Modal,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-} from "@/components/ui/modal"
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogFooter,
+  DialogTitle,
+} from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
@@ -52,79 +52,78 @@ const MedicationModal = ({ isOpen, onClose, onSubmit, medication }: MedicationMo
   };
 
   return (
-    <Modal open={isOpen} onOpenChange={onClose}>
-      <ModalContent>
-        <ModalHeader>
-          <h2>{medication ? 'Edit Medication' : 'Add Medication'}</h2>
-        </ModalHeader>
-        <ModalBody>
-          <div className="grid gap-4 py-4">
-            <div>
-              <Label htmlFor="patientName">Patient Name</Label>
-              <Input
-                id="patientName"
-                value={formData.patientName}
-                onChange={(e) => handleChange('patientName', e.target.value)}
-              />
-            </div>
-            <div>
-              <Label htmlFor="name">Medication Name</Label>
-              <Input
-                id="name"
-                value={formData.name}
-                onChange={(e) => handleChange('name', e.target.value)}
-              />
-            </div>
-            <div>
-              <Label htmlFor="dosage">Dosage</Label>
-              <Input
-                id="dosage"
-                value={formData.dosage}
-                onChange={(e) => handleChange('dosage', e.target.value)}
-              />
-            </div>
-            <div>
-              <Label htmlFor="instructions">Instructions</Label>
-              <Input
-                id="instructions"
-                value={formData.instructions}
-                onChange={(e) => handleChange('instructions', e.target.value)}
-              />
-            </div>
-            <div>
-              <Label htmlFor="scheduleTime">Schedule Time</Label>
-              <Input
-                id="scheduleTime"
-                value={formData.scheduleTime}
-                onChange={(e) => handleChange('scheduleTime', e.target.value)}
-              />
-            </div>
-            <div>
-              <Label htmlFor="status">Status</Label>
-              <Select value={formData.status} onValueChange={(value) => handleChange('status', value as 'Active' | 'Completed' | 'Discontinued')}>
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select a status" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="Active">Active</SelectItem>
-                  <SelectItem value="Completed">Completed</SelectItem>
-                  <SelectItem value="Discontinued">Discontinued</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle>
+            {medication ? 'Edit Medication' : 'Add Medication'}
+          </DialogTitle>
+        </DialogHeader>
+        <div className="grid gap-4 py-4">
+          <div>
+            <Label htmlFor="patientName">Patient Name</Label>
+            <Input
+              id="patientName"
+              value={formData.patientName}
+              onChange={(e) => handleChange('patientName', e.target.value)}
+            />
           </div>
-        </ModalBody>
-        <ModalFooter>
+          <div>
+            <Label htmlFor="name">Medication Name</Label>
+            <Input
+              id="name"
+              value={formData.name}
+              onChange={(e) => handleChange('name', e.target.value)}
+            />
+          </div>
+          <div>
+            <Label htmlFor="dosage">Dosage</Label>
+            <Input
+              id="dosage"
+              value={formData.dosage}
+              onChange={(e) => handleChange('dosage', e.target.value)}
+            />
+          </div>
+          <div>
+            <Label htmlFor="instructions">Instructions</Label>
+            <Input
+              id="instructions"
+              value={formData.instructions}
+              onChange={(e) => handleChange('instructions', e.target.value)}
+            />
+          </div>
+          <div>
+            <Label htmlFor="scheduleTime">Schedule Time</Label>
+            <Input
+              id="scheduleTime"
+              value={formData.scheduleTime}
+              onChange={(e) => handleChange('scheduleTime', e.target.value)}
+            />
+          </div>
+          <div>
+            <Label htmlFor="status">Status</Label>
+            <Select value={formData.status} onValueChange={(value) => handleChange('status', value as 'Active' | 'Completed' | 'Discontinued')}>
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Select a status" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Active">Active</SelectItem>
+                <SelectItem value="Completed">Completed</SelectItem>
+                <SelectItem value="Discontinued">Discontinued</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
+        <DialogFooter>
           <Button type="button" variant="secondary" onClick={onClose}>
             Cancel
           </Button>
           <Button type="submit" onClick={handleSubmit}>
             {medication ? 'Update Medication' : 'Add Medication'}
           </Button>
-        </ModalFooter>
-        <ModalCloseButton />
-      </ModalContent>
-    </Modal>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 };
 
