@@ -1,7 +1,3 @@
-Here’s a complete and clean `README.md` for your **HealthPal** project, customized based on everything you’ve shared:
-
----
-
 # 🩺 HealthPal
 
 **HealthPal** is a full-stack medical web application designed to streamline doctor-patient interactions. Built using **React** for the frontend and **Supabase** for backend services, HealthPal empowers doctors to manage patients, appointments, and medications efficiently — all in one place.
