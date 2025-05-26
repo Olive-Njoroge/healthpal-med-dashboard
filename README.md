@@ -1,3 +1,109 @@
+Here’s a complete and clean `README.md` for your **HealthPal** project, customized based on everything you’ve shared:
+
+---
+
+# 🩺 HealthPal
+
+**HealthPal** is a full-stack medical web application designed to streamline doctor-patient interactions. Built using **React** for the frontend and **Supabase** for backend services, HealthPal empowers doctors to manage patients, appointments, and medications efficiently — all in one place.
+
+---
+
+## 🚀 Features
+
+* **Doctor Login & Registration**
+  Secure authentication powered by Supabase.
+
+* **Dashboard**
+  View patient profiles, appointments, and medication history.
+
+* **Patient Management**
+  Add, edit, or delete patient records.
+
+* **Medication Management**
+  Prescribe, update, and schedule medications for patients.
+
+* **Appointment Scheduling**
+  Schedule and view upcoming patient appointments.
+
+---
+
+## 🛠️ Tech Stack
+
+
+* **Backend:** Supabase (Auth, Database, API)
+* **UI Design:** Lovable
+* **Database:** Supabase PostgreSQL (previously MySQL)
+* **Hosting:** Vercel 
+
+
+
+
+LOVABLE PROMPT<BR>
+Design a responsive medical dashboard interface for a system called HealthPal, built for doctors to manage their patients, appointments, and medications.
+
+The UI should include:
+
+A login and registration page for doctors
+
+A dashboard that shows:
+
+Overview cards (e.g., total patients, appointments today, medications scheduled)
+
+Navigation sidebar with links: Dashboard, Patients, Appointments, Medications, Logout
+
+A patients view with a list and option to add/edit/delete patients
+
+An appointments view to schedule/manage appointments
+
+A medications view showing medications linked to specific patients with schedule times
+
+Design should follow modern medical aesthetics: clean, light theme, blue/green accents, rounded corners, readable fonts, and simple icons.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Welcome to your Lovable project
 
 ## Project info
