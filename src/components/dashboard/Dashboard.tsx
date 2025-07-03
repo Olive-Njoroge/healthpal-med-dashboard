@@ -6,6 +6,7 @@ import DashboardOverview from './DashboardOverview';
 import PatientsView from './PatientsView';
 import AppointmentsView from './AppointmentsView';
 import MedicationsView from './MedicationsView';
+import RemindersView from '@/components/RemindersView';
 
 const Dashboard = () => {
   const [activeView, setActiveView] = useState('dashboard');
@@ -26,6 +27,8 @@ const Dashboard = () => {
         return <AppointmentsView />;
       case 'medications':
         return <MedicationsView />;
+      case 'reminders':
+        return <RemindersView />;
       default:
         return <DashboardOverview />;
     }

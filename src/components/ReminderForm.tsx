@@ -5,23 +5,25 @@ import axios from 'axios';
 interface ReminderFormProps {
   prefill?: {
     name?: string;
-    to?: string;
+    phone?: string;
   };
 }
 
 interface ReminderFormState {
   name: string;
-  to: string;
-  message: string;
+  phone: string;
+  medication: string;
   sendAt: string;
+  repeatDays: string;   // ✅ Added this
 }
 
 const ReminderForm: React.FC<ReminderFormProps> = ({ prefill }) => {
   const [form, setForm] = useState<ReminderFormState>({
     name: prefill?.name || '',
-    to: prefill?.to || '',
-    message: '',
+    phone: prefill?.phone || '',
+    medication: '',
     sendAt: '',
+    repeatDays: '',  // ✅ Initialize with empty string
   });
 
   const [status, setStatus] = useState('');
@@ -38,12 +40,14 @@ const ReminderForm: React.FC<ReminderFormProps> = ({ prefill }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus('Sending...');
+    setStatus('⏳ Sending...');
 
     try {
       await axios.post('http://localhost:8081/api/reminders', form);
-      setStatus('✅ Reminder scheduled successfully');
-      setForm({ name: '', to: '', message: '', sendAt: '' });
+      console.log('Form Data:', form);
+
+      setStatus('✅ Reminder(s) scheduled successfully');
+      setForm({ name: '', phone: '', medication: '', sendAt: '', repeatDays: '' });
     } catch (err: any) {
       console.error(err.response?.data || err.message);
       setStatus('❌ Failed to schedule reminder');
@@ -52,7 +56,7 @@ const ReminderForm: React.FC<ReminderFormProps> = ({ prefill }) => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded shadow">
-      <h2 className="text-xl font-semibold">Schedule Reminder</h2>
+      <h2 className="text-xl font-semibold">Schedule Medication Reminder</h2>
 
       <input
         type="text"
@@ -66,18 +70,18 @@ const ReminderForm: React.FC<ReminderFormProps> = ({ prefill }) => {
 
       <input
         type="text"
-        name="to"
+        name="phone"
         placeholder="Phone Number (e.g. 0712345678)"
-        value={form.to}
+        value={form.phone}
         onChange={handleChange}
         className="w-full p-2 border rounded"
         required
       />
 
       <textarea
-        name="message"
-        placeholder="Reminder Message (e.g. Take 1 tablet of Paracetamol)"
-        value={form.message}
+        name="medication"
+        placeholder="Medication (e.g. Take 1 tablet of Paracetamol)"
+        value={form.medication}
         onChange={handleChange}
         className="w-full p-2 border rounded"
         required
@@ -92,7 +96,20 @@ const ReminderForm: React.FC<ReminderFormProps> = ({ prefill }) => {
         required
       />
 
-      <button type="submit" className="bg-teal-600 text-white px-4 py-2 rounded hover:bg-teal-700">
+      <input
+        type="number"
+        name="repeatDays"
+        placeholder="Number of Days (e.g. 5)"
+        value={form.repeatDays}
+        onChange={handleChange}
+        className="w-full p-2 border rounded"
+        min="1"
+      />
+
+      <button
+        type="submit"
+        className="bg-teal-600 text-white px-4 py-2 rounded hover:bg-teal-700"
+      >
         Schedule Reminder
       </button>
 
